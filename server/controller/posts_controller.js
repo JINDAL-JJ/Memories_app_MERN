@@ -1,4 +1,5 @@
 const postMessage = require('../models/postMessage');
+const { post } = require('../routes/posts');
 
 module.exports.getPosts = async (req, res) => {
     try {
@@ -29,4 +30,17 @@ module.exports.updatePost = async (req, res) => {
     const updatedPost = await postMessage.findByIdAndUpdate(_id, {...post, _id}, {new: true});
 
     res.json(updatedPost);
+}
+
+module.exports.deletePost = async (req,res) => {
+    await postMessage.findByIdAndDelete(req.params.id);
+
+    res.json({message: 'Post deleted successfully'});
+}
+
+module.exports.likePost = async(req,res)=> {
+    const post = await postMessage.findById(req.params.id);
+    const updatedPost = await postMessage.findByIdAndUpdate(req.params.id, {likeCount: post.likeCount + 1});
+
+    res.json({updatedPost});
 }
