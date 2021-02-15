@@ -15,9 +15,6 @@ app.use(cors());
 
 app.use('/posts', postRoutes);
 
-// const CONNECTION_URL = 'mongodb+srv://cyberpunk:CYBER123PUNK@cluster0.rp9ou.mongodb.net/test?retryWrites=true&w=majority';
-// const CONNECTION_URL = 'mongodb+srv://cyberpunk:CYBER123PUNK@cluster0.rp9ou.mongodb.net/MEMORIES_DB?retryWrites=true&w=majority';
-// const CONNECTION_URL = 'mongodb://localhost/memories_db'
 const PORT = process.env.port || 5000;
 
 mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
